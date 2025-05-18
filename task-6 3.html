@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>معلم بارز</title>
+    <link rel="stylesheet" href="task-6 3.css">
+    <style>
+  * {
+    box-sizing: border-box;
+  }
+  body, html {
+    margin: 0; padding: 0;
+    height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
+    overflow: hidden;
+  }
+  .page {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    padding: 20px;
+  }
+  .page.active {
+    display: flex;
+  }
+  #page1 {
+    background: url('https://www.mola.gov.jo/EBV4.0/Root_Storage/AR/EB_Info_Page/1%D8%A7%D9%84%D9%83%D8%B1%D9%83.jpg') no-repeat center center/cover;
+  }
+   #page2 {
+    background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1400&q=80') no-repeat center center/cover;
+  }
+ header {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%;
+    background: rgba(0,0,0,0.5);
+    padding: 10px 20px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    z-index: 10;
+  }
+  button {
+    background: transparent;
+    border: 2px solid white;
+    color: white;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  button:hover, button:focus {
+    background-color: white;
+    color: #333;
+    outline: none;
+  }
+  h1 {
+    font-size: 3rem;
+    margin: 0;
+    text-shadow: 2px 2px 7px rgba(0,0,0,0.8);
+  }
+  p {
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin-top: 15px;
+    text-shadow: 1px 1px 5px rgba(0,0,0,0.7);
+  }
+</style>
+</head>
+<body>
+     <header>
+    <button id="btnPage1" aria-controls="page1" aria-selected="true">Page 1</button>
+    <button id="btnPage2" aria-controls="page2" aria-selected="false">Page 2</button>
+  </header>
+    <div id="page1" class="page active" role="region" aria-label="Page 1 content">
+        <br><br><br>
+    <h1 style="color: bisque;"><b>معلم بارز</b></h1>
+    <h2 style="color: chocolate;"><b>قلعة الكرك</b></h2>
+    <p style="color: limegreen;"><b>قلعة الكرك هي إحدى أكبر وأهم قلاع الأردن، تبلغ مساحتها 25,300 متر مربع وترتفع عن سطح البحر قرابة 1000 متر. يعود تاريخ إنشائها إلى عصر المؤابيين، وقد استخدمها الأنباط بدليل وجود تماثيل نبطية منقوشة في الأسس الأولى بالقلعة، وظلت في العصر البيزنطي درعاً واقياً للأردن حيث أشارت إليها خريطة مادبا الفسيفسائية بين مجموعة قلاع هذه المنطقة. وفي الفتوحات الإسلامية طرقتها جيوش المسلمين بقيادة أبي عبيده عامر بن الجراح فاستسلمت له. وظلت قلعة الكرك تؤدي دورها الدفاعي في العصر الإسلامي لأن المسلمين اهتموا بالقلاع القديمة وعملوا على تقويتها والإضافة إليها بالزيادة والبنيان، وعندما أسس الصليبيون مملكة بيت المقدس اللاتينية سنة ( 492هـ 1099م) احتلوا منطقة جنوب الأردن في سنتي (509 و510هـ 1115 و1116م) وأسسوا بارونية الكرك والشوبك</b>.</p>
+  <p style="color: limegreen;"><b>تقع قلعة الكرك في مدينة الكرك ولان هذا المعلم السياحي يملك تراثا عظيم فخترته</b></p>
+</div>
+<div id="page2" class="page" role="region" aria-label="Page 2 content">
+   <iframe width="560" height="315" src="https://www.youtube.com/embed/IrgYznXPa9g?si=3j8LFpA26iaUsZmH" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    
+  </div>
+  <script>
+  const btnPage1 = document.getElementById('btnPage1');
+  const btnPage2 = document.getElementById('btnPage2');
+  const page1 = document.getElementById('page1');
+  const page2 = document.getElementById('page2');
+
+  function showPage(pageToShow, btnToActivate) {
+    // Hide all pages
+    page1.classList.remove('active');
+    page2.classList.remove('active');
+    // Show the requested page
+    pageToShow.classList.add('active');
+
+    // Update button aria and styles
+    btnPage1.setAttribute('aria-selected', 'false');
+    btnPage2.setAttribute('aria-selected', 'false');
+    btnToActivate.setAttribute('aria-selected', 'true');
+  }
+
+  btnPage1.addEventListener('click', () => showPage(page1, btnPage1));
+  btnPage2.addEventListener('click', () => showPage(page2, btnPage2));
+</script>
+</body>
+</html>

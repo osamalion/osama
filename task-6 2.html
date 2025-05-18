@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مدينتي</title>
+    <link rel="stylesheet" href="task-6 3.css">
+    <style>
+  * {
+    box-sizing: border-box;
+  }
+  body, html {
+    margin: 0; padding: 0;
+    height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
+    overflow: hidden;
+  }
+  .page {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    padding: 20px;
+  }
+  .page.active {
+    display: flex;
+  }
+  #page1 {
+    background: url('https://www.mola.gov.jo/EBV4.0/Root_Storage/AR/EB_Info_Page/1%D8%A7%D9%84%D9%83%D8%B1%D9%83.jpg') no-repeat center center/cover;
+  }
+  #page2 {
+    background: url('https://www.mola.gov.jo/EBV4.0/Root_Storage/AR/EB_Info_Page/1%D8%A7%D9%84%D9%83%D8%B1%D9%83.jpg') no-repeat center center/cover;
+  }
+  header {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%;
+    background: rgba(0,0,0,0.5);
+    padding: 10px 20px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    z-index: 10;
+  }
+  button {
+    background: transparent;
+    border: 2px solid white;
+    color: white;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  button:hover, button:focus {
+    background-color: white;
+    color: #333;
+    outline: none;
+  }
+  h1 {
+    font-size: 3rem;
+    margin: 0;
+    text-shadow: 2px 2px 7px rgba(0,0,0,0.8);
+  }
+  p {
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin-top: 15px;
+    text-shadow: 1px 1px 5px rgba(0,0,0,0.7);
+  }
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #121212;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  header {
+    background-color: #222;
+    padding: 1rem 2rem;
+    font-weight: bold;
+    font-size: 2rem;
+    text-align: center;
+    letter-spacing: 2px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.7);
+  }
+  main.gallery {
+    flex-grow: 1;
+    max-width: 1100px;
+    margin: 20px auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 15px;
+    padding: 0 10px;
+  }
+  .gallery-item {
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.7);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .gallery-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.9);
+  }
+  .gallery-item img {
+    display: block;
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+  
+   .modal {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: rgba(0,0,0,0.85);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  .modal.active {
+    display: flex;
+  }
+  .modal-content {
+    max-width: 90vw;
+    max-height: 90vh;
+    border-radius: 15px;
+    overflow: hidden;
+    position: relative;
+    background: #222;
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
+  }
+  .modal-content img {
+    max-width: 100%;
+    max-height: 80vh;
+    display: block;
+    object-fit: contain;
+    border-radius: 15px 15px 0 0;
+  }
+  .modal-caption {
+    padding: 12px 18px;
+    color: #ddd;
+    font-size: 1.1rem;
+    text-align: center;
+    user-select:none;
+  }
+  .modal-close {
+    position: absolute;
+    top: 8px;
+    right: 12px;
+    font-size: 2.5rem;
+    color: white;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    user-select:none;
+    font-weight: bold;
+    line-height: 1;
+    transition: color 0.3s ease;
+  }
+  .modal-close:hover, .modal-close:focus {
+    color: #ff5555;
+    outline: none;
+  }
+</style>
+</head>
+<body >
+    <header>
+    <button id="btnPage1" aria-controls="page1" aria-selected="true" >Page 1</button>
+    <button id="btnPage2" aria-controls="page2" aria-selected="false">Page 2</button>
+  </header>
+
+  <div id="page1" class="page active" role="region" aria-label="Page 1 content">
+    <h1 style="color: bisque;">مدينتي</h1>
+    <p style="color: limegreen;" ><b> الكرك مدينة أردنية تاريخية تقع في جنوب المملكة وتقع في جنوب الأردن، وتبعد عن العاصمة عمان حوالي 120 كيلومترًا ظهرت الكرك في التاريخ القديم في التوراة باسم "قير مؤاب" أو "قير حارسة ومنابرز معالمها السياحية قلعة الكرك وغابة اليوبيل ومتنزه عين ساره ووادي بن حماد </b></p>
+  </div>
+  
+  <div id="page2" class="page" role="region" aria-label="Page 2 content">
+   <br><br><br>
+    <h1>صور عن مدينة الكرك</h1>  
+  
+<main class="gallery" aria-label="Image Gallery">
+  <div class="gallery-item" tabindex="0">
+    <img src="images.jpeg" alt="عين ماء" />
+  </div>
+  <div class="gallery-item" tabindex="0">
+    <img src="ssss.jpeg" alt="قلعةالكرك" />
+  </div>
+  <div class="gallery-item" tabindex="0">
+    <img src="oooo.jpeg" alt="متحف اثار الكرك" />
+  </div>
+  <div class="gallery-item" tabindex="0">
+    <img src="https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&w=800&q=80" alt="Beach Sunset" />
+  </div>
+  <div class="gallery-item" tabindex="0">
+    <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" alt="Snowy Mountain" />
+  </div>
+  <div class="gallery-item" tabindex="0">
+    <img src="https://images.unsplash.com/photo-1495231916356-a86217efff12?auto=format&fit=crop&w=800&q=80" alt="Desert Dunes" />
+  </div>
+</main>
+
+<!-- Modal -->
+<div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-caption" tabindex="-1">
+  <div class="modal-content">
+    <button class="modal-close" aria-label="Close modal">&times;</button>
+    <img src="" alt="" />
+    <div id="modal-caption" class="modal-caption"></div>
+  </div>
+</div>
+</div>
+  <div >
+        <section class="section-container" aria-label="Section items grid">
+            <article class="section-item">
+             <a href="task-6.html "> 
+               <h3>من انا</h3></a>
+            </article>
+            <article class="section-item">
+               <a href="task-6 3.html"> 
+                <h3>معلم بارز</h3></a>
+            </article>
+            </section>
+    </div>
+  <script>
+  const btnPage1 = document.getElementById('btnPage1');
+    const btnPage2 = document.getElementById('btnPage2');
+  const page1 = document.getElementById('page1');
+  const page2 = document.getElementById('page2');
+   function showPage(pageToShow, btnToActivate) {
+    // Hide all pages
+    page1.classList.remove('active');
+     page2.classList.remove('active');
+    // Show the requested page
+    pageToShow.classList.add('active');
+    btnPage1.setAttribute('aria-selected', 'false');
+        btnPage2.setAttribute('aria-selected', 'false');
+     btnToActivate.setAttribute('aria-selected', 'true');
+       }
+         btnPage1.addEventListener('click', () => showPage(page1, btnPage1));
+         btnPage2.addEventListener('click', () => showPage(page2, btnPage2));
+           // Elements
+  const galleryItems = document.querySelectorAll('.gallery-item');
+  const modal = document.querySelector('.modal');
+  const modalContent = modal.querySelector('.modal-content');
+  const modalImg = modal.querySelector('img');
+  const modalCaption = modal.querySelector('#modal-caption');
+  const modalCloseBtn = modal.querySelector('.modal-close');
+
+  // Open modal with image src and alt
+  function openModal(src, alt) {
+    modalImg.src = src;
+    modalImg.alt = alt;
+    modalCaption.textContent = alt;
+    modal.classList.add('active');
+    // Focus modal for accessibility
+    modal.focus();
+  }
+
+  // Close modal function
+  function closeModal() {
+    modal.classList.remove('active');
+    modalImg.src = '';
+    modalImg.alt = '';
+    modalCaption.textContent = '';
+  }
+
+  // Event: click or keyboard enter/space on gallery items
+  galleryItems.forEach(item => {
+    const img = item.querySelector('img');
+    item.addEventListener('click', () => openModal(img.src, img.alt));
+    item.addEventListener('keydown', e => {
+      if(e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        openModal(img.src, img.alt);
+      }
+    });
+  });
+
+  // Close modal on close button click
+  modalCloseBtn.addEventListener('click', closeModal);
+
+  // Close modal clicking outside modal content
+  modal.addEventListener('click', e => {
+    if(e.target === modal) {
+      closeModal();
+    }
+  });
+
+  // Close modal on Escape key press
+  document.addEventListener('keydown', e => {
+    if(e.key === 'Escape' && modal.classList.contains('active')) {
+      closeModal();
+    }
+  });
+         </script>
+         
+</body>
+</html>
