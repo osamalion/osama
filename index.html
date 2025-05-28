@@ -9,32 +9,6 @@
   * {
     box-sizing: border-box;
   }
-  body, html {
-    margin: 0; padding: 0;
-    height: 100vh;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: white;
-    overflow: hidden;
-  }
-  .page {
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    display: none;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    text-align: center;
-    padding: 20px;
-  }
-  .page.active {
-    display: flex;
-  }
-  #page1 {
-    background: url('https://www.mola.gov.jo/EBV4.0/Root_Storage/AR/EB_Info_Page/1%D8%A7%D9%84%D9%83%D8%B1%D9%83.jpg') no-repeat center center/cover;
-  }
-   #page2 {
-    background: url('https://www.mola.gov.jo/EBV4.0/Root_Storage/AR/EB_Info_Page/1%D8%A7%D9%84%D9%83%D8%B1%D9%83.jpg') no-repeat center center/cover;
-  }
    header {
     position: fixed;
     top: 0; left: 0;
@@ -75,24 +49,14 @@
 </style>
 </head>
 <body>
-    <header>
-    <button id="btnPage1" aria-controls="page1" aria-selected="true">Page 1</button>
-    <button id="btnPage2" aria-controls="page2" aria-selected="false">Page 2</button>
-  </header>
+    
    <div id="page1" class="page active" role="region" aria-label="Page 1 content">
    <br><br>
     <h1>من انا</h1>
         <p style="font-size: 300%;">اسمي: اسامه صادق محمد صادق السحيمات</p>
         <img src="osama.jpg" alt="صورة أسامة" width="16%" height="35%">
         <p style="font-size: 150%;">نبذه عن شخصيتي: انا الطالب اسامه ادرس الامن السبراني في جامعة الطفيله التقنيه وانا العب مع فريق الجامعه لكرة الطائره والعب مع ناد صقور الكرك للكيك بوكسين</p>
-        
-    </div>
-
-    </div>
-     <div id="page2" class="page" role="region" aria-label="Page 2 content">
-
-         <div >
-        <section class="section-container" aria-label="Section items grid">
+         <section class="section-container" aria-label="Section items grid">
             <article class="section-item">
              <a href="task-6 2.html"> 
                <h3>مدينتي</h3></a>
@@ -101,7 +65,13 @@
                <a href="task-6 3.html"> 
                 <h3>معلم بارز</h3></a>
             </article>
-            </section>  </div>
+            </section>
+    </div>
+
+    </div>
+
+         <div >
+         </div>
     <script>
   const btnPage1 = document.getElementById('btnPage1');
   const btnPage2 = document.getElementById('btnPage2');
